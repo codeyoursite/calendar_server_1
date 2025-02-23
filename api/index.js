@@ -118,8 +118,10 @@ app.post("/event", (req, res) => {
     res.json("Post request recieved!")
 });
 
+/*
 app.listen(5001, () => {
     console.log('Server is running on http://localhost:5001');
 });
+*/
 // Export the wrapped app so it can run as a serverless function
 module.exports = serverless(app);
