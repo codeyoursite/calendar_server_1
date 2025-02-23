@@ -1,3 +1,4 @@
-./.vscode
-./helpful_guide.js
-./.gitignore
+.vscode
+helpful_guide.js
+.gitignore
+.DS_Store
