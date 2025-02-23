@@ -3,4 +3,4 @@
     "src":"./index.js"
 }
 
-], "routes": [{ "src": "/(.*)", "dest": "/server" }] }
+], "routes": [{ "src": "/(.*)", "dest": "./index.js" }] }
