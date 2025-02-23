@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const cors = require('cors')
 const bodyParser = require("body-parser")
+const serverless = require('serverless-http');
 
 const app = express();
 
@@ -120,3 +121,5 @@ app.post("/event", (req, res) => {
 app.listen(5001, () => {
     console.log('Server is running on http://localhost:5001');
 });
+// Export the wrapped app so it can run as a serverless function
+module.exports = serverless(app);
