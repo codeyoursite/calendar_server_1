@@ -4,4 +4,4 @@
     "use":"@vercel/nodes"
 }
 
-], "rewrites": [{ "source": "/(.*)", "destination": "/server" }] }
+], "routes": [{ "src": "/(.*)", "dest": "/server" }] }
