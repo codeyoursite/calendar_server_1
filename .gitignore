@@ -2,3 +2,4 @@
 helpful_guide.js
 .gitignore
 .DS_Store
+node_modules
