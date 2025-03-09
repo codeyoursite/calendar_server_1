@@ -97,26 +97,26 @@ async function getEvents(query){
   }
 }
 
-app.get('/', async(req, res) => {
+app.get('/api', async(req, res) => {
   let query = "SELECT * FROM events";
   const data = await getEvents(query);
   res.json(data);
 });
 
-app.get("/event", async (req,res)=>{
+app.get("/api/event", async (req,res)=>{
   let query = "SELECT * FROM events";
   const data = await getEvents(query)
   res.json(data);
 })
 
-app.get("/event/:id", (req, res)=>{
+app.get("/api/event/:id", (req, res)=>{
   const id = req.params.id
   let query = `SELECT * FROM events WHERE id='${id}'`
   const data = getEvents(query);
   res.json(data[0]);
 });
 
-app.delete("/event", (req, res) => {
+app.delete("/api/event", (req, res) => {
   let eventId = req.body.id
   console.log(`Received: ${req.body.id}`)
   const data = fs.readFileSync(path.join(__dirname, 'events.json'), 'utf8');
@@ -138,7 +138,7 @@ app.delete("/event", (req, res) => {
   res.json("Delete request recieved!")
 });
 
-app.put("/event/:id", (req, res) => {
+app.put("/api/event/:id", (req, res) => {
   let eventId = req.params.id
   console.log(`Received: ${req.body}`)
   const data = fs.readFileSync(path.join(__dirname, 'events.json'), 'utf8');
