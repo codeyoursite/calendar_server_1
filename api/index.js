@@ -179,4 +179,3 @@ app.post("/event", (req, res) => {
 // Export the wrapped app so it can run as a serverless function
 module.exports = serverless(app);
 
-module.exports = allowCors(handler);
