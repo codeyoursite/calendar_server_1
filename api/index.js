@@ -21,6 +21,29 @@ const pool = new Pool({
   },
 });
 
+const allowCors = fn => async (req, res) => {
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+  return await fn(req, res)
+}
+
+const handler = (req, res) => {
+  const d = new Date()
+  res.end(d.toString())
+}
+
+
 /*
 const client = new Client ({
   user: process.env.POSTGRES_USER,
@@ -30,9 +53,9 @@ const client = new Client ({
 })
 */
 // Read the JSON file
-const dataPath = path.join(__dirname, 'events.json');
-const rawData = fs.readFileSync(dataPath, 'utf8');
-const data = JSON.parse(rawData);
+//const dataPath = path.join(__dirname, 'events.json');
+//const rawData = fs.readFileSync(dataPath, 'utf8');
+//const data = JSON.parse(rawData);
 // console.log(process.env.DATABASE_URL)
 
 
@@ -155,3 +178,5 @@ app.post("/event", (req, res) => {
 
 // Export the wrapped app so it can run as a serverless function
 module.exports = serverless(app);
+
+module.exports = allowCors(handler);
