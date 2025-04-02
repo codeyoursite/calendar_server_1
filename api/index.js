@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const cors = require('cors')
+// const cors = require('cors')
 const bodyParser = require("body-parser")
 const serverless = require('serverless-http');
 
@@ -9,7 +9,7 @@ const { Pool } = require('pg');
 
 const app = express();
 
-app.use(cors())
+// app.use(cors())
 app.use(bodyParser())
 
 
