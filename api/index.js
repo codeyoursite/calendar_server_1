@@ -1,39 +1,33 @@
 export default async function handler(req, res) {
-    // Simple CORS headers (no need for cors package)
+    // Setup CORS headers
     res.setHeader("Access-Control-Allow-Credentials", true);
-    res.setHeader("Access-Control-Allow-Origin", "*"); // Change '*' to specific domain if you want to restrict
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT");
     res.setHeader(
         "Access-Control-Allow-Headers",
         "X-CSRF-Token, X-Requested-With, Accept, Content-Type, Authorization"
     );
 
-    // Handle preflight request
+    // Preflight
     if (req.method === "OPTIONS") {
-        return res.status(200).end();
+        return res.status(200).end(); // <-- prevents timeout
     }
 
     const { slug } = req.query;
 
     if (!slug) {
-        return res.status(400).json({ error: "Missing slug" });
+        return res.status(400).json({ error: "Missing slug" }); // <-- prevents timeout
     }
 
     if (req.method === "GET") {
-        // Handle GET requests
-        return res.status(200).json({ message: `GET received for slug: ${slug}` });
+        return res.status(200).json({ message: `GET received for slug: ${slug}` }); // <-- prevents timeout
     }
 
     if (req.method === "POST") {
-        // Body is automatically parsed as JSON
         const data = req.body;
-
-        // Do whatever you want with `data` here
         console.log("Received data:", data);
-
-        return res.status(200).json({ message: "POST successful", data, slug });
+        return res.status(200).json({ message: "POST successful", data, slug }); // <-- prevents timeout
     }
 
-    // Unsupported methods
-    return res.status(405).json({ error: "Method Not Allowed" });
+    return res.status(405).json({ error: "Method Not Allowed" }); // <-- prevents timeout
 }
