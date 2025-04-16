@@ -152,15 +152,15 @@ app.put("/api/event/:id", (req, res) => {
 });
 
 app.post("/event", (req, res) => {
-    console.log(`Received: ${req.body}`)
-    const data = fs.readFileSync(path.join(__dirname, 'events.json'), 'utf8');
-    let events = JSON.parse(data);
-    req.body.id = generateIdentifier()
+    // console.log(`Received: ${req.body}`)
+    // const data = fs.readFileSync(path.join(__dirname, 'events.json'), 'utf8');
+    // let events = JSON.parse(data);
+    // req.body.id = generateIdentifier()
 
-    events.push(req.body)
-    const writeData = JSON.stringify(events, null, 2);
-    fs.writeFileSync(path.join(__dirname, 'events.json'), writeData, 'utf8');
-    console.log(events);
+    // events.push(req.body)
+    // const writeData = JSON.stringify(events, null, 2);
+    // fs.writeFileSync(path.join(__dirname, 'events.json'), writeData, 'utf8');
+    // console.log(events);
     res.json("Post request recieved!")
 });
 
